@@ -68,6 +68,13 @@ const VARS = [
   ["v2", "2 · Outline + Food", "<b>Food unten in den Fenstern.</b> BBQ Tray links, glasierte Chicken Bites rechts, auch in den Oberlichtern. Wirkt von weitem am stärksten, nimmt aber unten Durchsicht."],
   ["v3", "3 · Outline + Seoul Linie", "<b>Learning aus Hamburg.</b> Die Seoul Linienzeichnung als feine Outline unten über beide Fenster, durchgehend wie aus einem Guss. Kein Food."],
   ["v4", "4 · Empfehlung", "<b>Seoul Linie unten, Food nur oben.</b> Outlines und Linie halten die Scheiben offen, das Food sitzt in den Oberlichtern über den Köpfen und wirkt trotzdem von der Straße."],
+  ["v5", "5 · Band", "<b>Nach Bánh Mì.</b> KOREAN · STREET · FOOD groß in Weiß über die drei Oberlichter, darunter je eine feine Programmzeile, unten ein Menüband. Die Mitte der Scheiben bleibt frei für den Blick in den Laden."],
+  ["v6", "6 · Hallo Oldenburg", "<b>Nach Pret.</b> Vollflächig: Fenster in Mmaah Orange, Tür Aubergine mit Fliesenraster und fliegender BBQ Schale. Links MACHT JEDEN TAG KNUSPRIGER, SCHÄRFER, SCHNELLER., rechts HALLO OLDENBURG! mit Chicken Bites. Maximal auffällig, dafür kein Blick in den Laden."],
+  ["v7", "7 · Seoul Food", "<b>Nach L'Épicerie Paris.</b> Sprüche schräg in Weiß mit Kritzelstrichen (SCHON GEGESSEN?, SEOUL FOOD!, KNUSPRIG IST PFLICHT.), unten ein weißes Wolkenband über die ganze Front mit Food Stickern und FRISCH ZUBEREITET IN OLDENBURG."],
+  ["v8", "8 · Riesenbecher", "<b>Nach Asian Salads.</b> Ein Produkt riesig pro Fenster: links die Mango Lemonade (frisch gemixt.), rechts die fliegende BBQ Schale (heißer als gedacht.). Klein geschrieben wie im Vorbild, Programm in den Oberlichtern."],
+  ["v9", "9 · Nudelwelle", "<b>Nach MISO.</b> Weiße Bänder laufen wie Nudeln ineinander über Fenster und Tür, darüber das Logo mit KOREAN STREET FOOD in Weiß und 먹자 im Oberlicht. Ruhig und edel."],
+  ["v10", "10 · Hier endet dein Hunger", "<b>Nach Day Et.</b> Ein Satz riesig in Mmaah Orange über beide Fenster: HIER ENDET DEIN HUN-GER. Auf der Tür klein Logo und Programm wie die Öffnungszeiten im Vorbild."],
+  ["v11", "11 · Wandelhalle", "<b>Nach der Hamburg Folie V59.</b> Seoul Wallpaper als satiniertes Glasdekor, links HIER BESTELLEN / ÜBERALL GENIESSEN in Aubergine mit App Karte und echtem QR Code, rechts KOREANISCH? ABER SCHNELL! und Hol dir jetzt: KOREAN FRIED CHICKEN. Tür mit freiem Sichtfeld, Logo im Oberlicht."],
 ];
 const ANS = [["01_Front","Front"],["02_Schraeg_rechts","Schräg rechts"],["03_Schraeg_links","Schräg links"],["04_Durchgang_Seitenfenster","Durchgang, Seitenfenster"],["05_Tuer_nah","Tür nah"],["06_Totale_Strasse","Totale"]];
 let v = "v4", a = "01_Front";
@@ -77,8 +84,8 @@ function zeichnen() {
   vars.innerHTML = ""; reihe.innerHTML = "";
   VARS.forEach(([k, n]) => { const b = document.createElement("button"); b.textContent = n; b.className = k === v ? "an" : ""; b.onclick = () => { v = k; try { localStorage.setItem("ol_v", v); } catch (e) {} zeichnen(); }; vars.appendChild(b); });
   ANS.forEach(([k, n]) => { const f = document.createElement("figure"); f.className = k === a ? "an" : "";
-    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}_m.jpg?tag" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
-  document.getElementById("bild").src = `img/${v}_${a}.jpg?tag`;
+    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}_m.jpg?neu" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
+  document.getElementById("bild").src = `img/${v}_${a}.jpg?neu`;
   document.getElementById("text").innerHTML = VARS.find(x => x[0] === v)[2];
   const fv = v === "v0" ? "v1" : v;
   document.getElementById("flach").src = `img/flach_${fv}.jpg`;
