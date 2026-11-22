@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mmaah Oldenburg Front</title>
+<style>
+  :root { --bg:#120c10; --karte:#1d1519; --linie:#3a2a31; --text:#f4ece6; --leise:#b9a8a8; --rot:#E3170A; --orange:#FF4005; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  header { padding:28px 20px 10px; max-width:1400px; margin:0 auto; }
+  h1 { margin:0; font-size:28px; letter-spacing:-.01em; }
+  h1 span { color:var(--orange); }
+  .unter { color:var(--leise); margin-top:4px; }
+  main { max-width:1400px; margin:0 auto; padding:0 20px 60px; }
+  .leiste { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 12px; position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:2; }
+  .leiste button { background:var(--karte); color:var(--text); border:1px solid var(--linie); border-radius:999px; padding:9px 16px; font:inherit; cursor:pointer; }
+  .leiste button.an { background:var(--orange); border-color:var(--orange); color:#fff; }
+  .leiste .teil { width:100%; height:0; }
+  .gross { position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--linie); background:#000; }
+  .gross img { display:block; width:100%; height:auto; }
+  .info { margin:12px 0 26px; color:var(--leise); max-width:900px; }
+  .info b { color:var(--text); }
+  .reihe { display:grid; grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:10px; }
+  .reihe figure { margin:0; cursor:pointer; border-radius:10px; overflow:hidden; border:2px solid transparent; background:var(--karte); }
+  .reihe figure.an { border-color:var(--orange); }
+  .reihe img { width:100%; display:block; }
+  .reihe figcaption { padding:6px 10px; font-size:13px; color:var(--leise); }
+  h2 { font-size:19px; margin:38px 0 10px; }
+  .zwei { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .zwei img, .flach img { width:100%; border-radius:12px; border:1px solid var(--linie); display:block; }
+  .flach { display:grid; grid-template-columns:3fr 1fr; gap:14px; align-items:start; }
+  ul { padding-left:18px; color:var(--leise); } li { margin:4px 0; } li b { color:var(--text); }
+  @media (max-width:760px) { .zwei, .flach { grid-template-columns:1fr; } h1 { font-size:22px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>mmaah! <span>Oldenburg</span> · Ladenfront</h1>
+  <div class="unter">Staustr. 11 · Unity Modell mit Werbeanlage und Schaufensterbeklebung · Entwurf 20.11.2026, Tageslicht (21.11.2026), Maße aus den Fotos geschätzt</div>
+</header>
+<main>
+  <div class="leiste" id="vars"></div>
+  <div class="gross"><img id="bild" alt="Render der Ladenfront"></div>
+  <div class="info" id="text"></div>
+  <div class="reihe" id="ansichten"></div>
+
+  <h2>Folien flach (Druckmaß, 1 px = 1 mm)</h2>
+  <div class="flach"><img id="flach" alt="Front Scheiben flach"><img id="seite" alt="Seitenfenster flach"></div>
+
+  <h2>Vorlage: Fotos vom 13.11.2026</h2>
+  <div class="zwei"><img src="img/vorlage_2026-11-13_Front.jpg" alt="Foto Front"><img src="img/vorlage_2026-11-13_Side_Left.jpg" alt="Foto Seite"></div>
+
+  <h2>Learnings aus Hamburg, hier umgesetzt</h2>
+  <ul>
+    <li><b>Durchsicht bleibt:</b> nur weiße Outlines, Hauptbotschaft zwischen 1,25 und 2,05 m, darunter frei oder nur die feine Seoul Linie.</li>
+    <li><b>Wie aus einem Guss:</b> gleiche Schrift (National 2 Black), gleiche Höhen auf allen Scheiben, die Seoul Linie läuft über beide Fenster durch.</li>
+    <li><b>Food nur echt:</b> die freigestellten Chicken Bites mit Sesam und das BBQ Tray in der Mmaah Schale, keine Hand, keine roten Pommes Schachteln.</li>
+    <li><b>Logo:</b> nur mmaah! mit Outline auf der Tür, die Werbeanlage oben als dunkelrote Einzelbuchstaben mit weißem Halo.</li>
+    <li><b>Offen vor Druck:</b> Aufmaß vor Ort, echter QR Code der App, 15 € Aktion und KOREAN BBQ ON RICE mit der Karte abgleichen.</li>
+  </ul>
+</main>
+<script>
+const VARS = [
+  ["v0", "Ohne Folie", "Die Front ohne Beklebung, zum Vergleich."],
+  ["v1", "1 · Outline pur", "<b>Naders Richtung, sauber gesetzt.</b> Programm in weißer Outline, Blick in den Laden bleibt komplett frei. Tür mit Logo, App und 15 € Störer, Oberlichter 먹자, KOREAN STREET FOOD, SINCE 2012."],
+  ["v2", "2 · Outline + Food", "<b>Food unten in den Fenstern.</b> BBQ Tray links, glasierte Chicken Bites rechts, auch in den Oberlichtern. Wirkt von weitem am stärksten, nimmt aber unten Durchsicht."],
+  ["v3", "3 · Outline + Seoul Linie", "<b>Learning aus Hamburg.</b> Die Seoul Linienzeichnung als feine Outline unten über beide Fenster, durchgehend wie aus einem Guss. Kein Food."],
+  ["v4", "4 · Empfehlung", "<b>Seoul Linie unten, Food nur oben.</b> Outlines und Linie halten die Scheiben offen, das Food sitzt in den Oberlichtern über den Köpfen und wirkt trotzdem von der Straße."],
+];
+const ANS = [["01_Front","Front"],["02_Schraeg_rechts","Schräg rechts"],["03_Schraeg_links","Schräg links"],["04_Durchgang_Seitenfenster","Durchgang, Seitenfenster"],["05_Tuer_nah","Tür nah"],["06_Totale_Strasse","Totale"]];
+let v = "v4", a = "01_Front";
+try { v = localStorage.getItem("ol_v") || v; } catch (e) {}
+const vars = document.getElementById("vars"), reihe = document.getElementById("ansichten");
+function zeichnen() {
+  vars.innerHTML = ""; reihe.innerHTML = "";
+  VARS.forEach(([k, n]) => { const b = document.createElement("button"); b.textContent = n; b.className = k === v ? "an" : ""; b.onclick = () => { v = k; try { localStorage.setItem("ol_v", v); } catch (e) {} zeichnen(); }; vars.appendChild(b); });
+  ANS.forEach(([k, n]) => { const f = document.createElement("figure"); f.className = k === a ? "an" : "";
+    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}_m.jpg?tag" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
+  document.getElementById("bild").src = `img/${v}_${a}.jpg?tag`;
+  document.getElementById("text").innerHTML = VARS.find(x => x[0] === v)[2];
+  const fv = v === "v0" ? "v1" : v;
+  document.getElementById("flach").src = `img/flach_${fv}.jpg`;
+  document.getElementById("seite").src = `img/seite_${fv}.jpg`;
+}
+zeichnen();
+</script>
+</body>
+</html>
