@@ -33,6 +33,20 @@
   .flach { display:grid; grid-template-columns:3fr 1fr; gap:14px; align-items:start; }
   ul { padding-left:18px; color:var(--leise); } li { margin:4px 0; } li b { color:var(--text); }
   @media (max-width:760px) { .zwei, .flach { grid-template-columns:1fr; } h1 { font-size:22px; } }
+  .galerie-knopf { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:20; background:var(--orange); color:#fff; border:0; border-radius:999px; padding:12px 26px; font:inherit; font-weight:700; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,.35); }
+  .gal { position:fixed; inset:0; z-index:30; background:rgba(12,10,12,.96); overflow:auto; display:none; padding:24px 16px 90px; }
+  .gal.offen { display:block; }
+  .gal h2 { color:#fff; margin:0 0 6px; }
+  .gal .zu { position:fixed; top:14px; right:16px; z-index:31; }
+  .gal-raster { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px; }
+  .gal-raster figure { margin:0; cursor:pointer; }
+  .gal-raster img { width:100%; border-radius:8px; display:block; }
+  .gal-raster figcaption { color:#ddd; font-size:12px; padding:4px 2px; }
+  .gross-gal { position:fixed; inset:0; z-index:40; background:#000; display:none; align-items:center; justify-content:center; }
+  .gross-gal.offen { display:flex; }
+  .gross-gal img { max-width:100%; max-height:84vh; }
+  .gross-gal .unten { position:fixed; bottom:16px; left:0; right:0; display:flex; gap:10px; justify-content:center; align-items:center; color:#fff; flex-wrap:wrap; padding:0 16px; }
+  .gross-gal button, .gal .zu { background:var(--karte); color:var(--text); border:1px solid var(--linie); border-radius:999px; padding:9px 16px; font:inherit; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -42,6 +56,8 @@
 </header>
 <main>
   <div class="leiste" id="vars"></div>
+  <div class="leiste"><button id="markise" type="button">Markise: aus</button></div>
+  <p class="hinweis" style="margin:6px 0 14px;opacity:.8">Stand 23.11.2026 für alle Varianten: Werbeanlage weiß mit schwarzer Kontur, Tür ohne Folie, hinter den Oberlichtern Abholbildschirm, beleuchtetes Logo mit KOREAN STREET FOOD und blaues Neon 먹자, Seitenfenster KOREAN STREET FOOD wie vor Ort, Innenraum wie Hohenzollernstraße.</p>
   <div class="gross"><img id="bild" alt="Render der Ladenfront"></div>
   <div class="info" id="text"></div>
   <div class="reihe" id="ansichten"></div>
@@ -61,6 +77,9 @@
     <li><b>Offen vor Druck:</b> Aufmaß vor Ort, echter QR Code der App, 15 € Aktion und KOREAN BBQ ON RICE mit der Karte abgleichen.</li>
   </ul>
 </main>
+<button class="galerie-knopf" id="galerieKnopf" type="button">Galerie</button>
+<div class="gal" id="gal"><button class="zu" id="galZu" type="button">Schließen</button><h2>Galerie</h2><p style="color:#bbb;margin:0 0 14px">Alle Renders: jede Variante, jede Ansicht, ohne und mit Markise.</p><div class="gal-raster" id="galRaster"></div></div>
+<div class="gross-gal" id="grossGal"><img id="grossBild" alt="Render groß"><div class="unten"><button id="zurueck" type="button">Zurück</button><span id="grossText"></span><button id="weiter" type="button">Weiter</button><button id="grossZu" type="button">Zur Galerie</button></div></div>
 <script>
 const VARS = [
   ["v0", "Ohne Folie", "Die Front ohne Beklebung, zum Vergleich."],
@@ -75,22 +94,47 @@ const VARS = [
   ["v9", "9 · Nudelwelle", "<b>Nach MISO.</b> Weiße Bänder laufen wie Nudeln ineinander über Fenster und Tür, darüber das Logo mit KOREAN STREET FOOD in Weiß und 먹자 im Oberlicht. Ruhig und edel."],
   ["v10", "10 · Hier endet dein Hunger", "<b>Nach Day Et.</b> Ein Satz riesig in Mmaah Orange über beide Fenster: HIER ENDET DEIN HUN-GER. Auf der Tür klein Logo und Programm wie die Öffnungszeiten im Vorbild."],
   ["v11", "11 · Wandelhalle", "<b>Nach der Hamburg Folie V59.</b> Seoul Wallpaper als satiniertes Glasdekor, links HIER BESTELLEN / ÜBERALL GENIESSEN in Aubergine mit App Karte und echtem QR Code, rechts KOREANISCH? ABER SCHNELL! und Hol dir jetzt: KOREAN FRIED CHICKEN. Tür mit freiem Sichtfeld, Logo im Oberlicht."],
+  ["v12", "12 · Seitenfenster Neon", "<b>Seitenfenster als blaues Neon.</b> Front wie Variante 1, das große Seitenfenster im Durchgang zeigt KOREAN STREET FOOD als blau leuchtenden Neon Schriftzug, durch das Fenster sieht man in den Laden."],
 ];
 const ANS = [["01_Front","Front"],["02_Schraeg_rechts","Schräg rechts"],["03_Schraeg_links","Schräg links"],["04_Durchgang_Seitenfenster","Durchgang, Seitenfenster"],["05_Tuer_nah","Tür nah"],["06_Totale_Strasse","Totale"],["07_Innen","Innen"]];
-let v = "v4", a = "01_Front";
+let v = "v4", a = "01_Front", mk = false;
 try { v = localStorage.getItem("ol_v") || v; } catch (e) {}
 const vars = document.getElementById("vars"), reihe = document.getElementById("ansichten");
 function zeichnen() {
   vars.innerHTML = ""; reihe.innerHTML = "";
   VARS.forEach(([k, n]) => { const b = document.createElement("button"); b.textContent = n; b.className = k === v ? "an" : ""; b.onclick = () => { v = k; try { localStorage.setItem("ol_v", v); } catch (e) {} zeichnen(); }; vars.appendChild(b); });
   ANS.forEach(([k, n]) => { const f = document.createElement("figure"); f.className = k === a ? "an" : "";
-    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}_m.jpg?innen" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
-  document.getElementById("bild").src = `img/${v}_${a}.jpg?innen`;
+    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}${mk ? "_markise" : ""}_m.jpg?m23" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
+  document.getElementById("bild").src = `img/${v}_${a}${mk ? "_markise" : ""}.jpg?m23`;
+  const mb = document.getElementById("markise"); mb.textContent = "Markise: " + (mk ? "an" : "aus"); mb.className = mk ? "an" : "";
   document.getElementById("text").innerHTML = VARS.find(x => x[0] === v)[2];
   const fv = v === "v0" ? "v1" : v;
   document.getElementById("flach").src = `img/flach_${fv}.jpg`;
   document.getElementById("seite").src = `img/seite_${fv}.jpg`;
 }
+document.getElementById("markise").onclick = () => { mk = !mk; zeichnen(); };
+// Galerie: alle Renders als Raster, Klick öffnet Großansicht mit Zurück und Weiter
+const BILDER = [];
+VARS.forEach(([vk, vn]) => [false, true].forEach(m => ANS.forEach(([ak, an]) =>
+  BILDER.push({ s: `img/${vk}_${ak}${m ? "_markise" : ""}`, t: `${vn} · ${an}${m ? " · mit Markise" : ""}` }))));
+let gi = 0;
+const gal = document.getElementById("gal"), gg = document.getElementById("grossGal");
+function grossZeigen() { document.getElementById("grossBild").src = BILDER[gi].s + ".jpg?m23"; document.getElementById("grossText").textContent = `${gi + 1} / ${BILDER.length} · ${BILDER[gi].t}`; }
+document.getElementById("galerieKnopf").onclick = () => {
+  const r = document.getElementById("galRaster");
+  if (!r.childElementCount) BILDER.forEach((b, i) => { const f = document.createElement("figure");
+    f.innerHTML = `<img loading="lazy" src="${b.s}_m.jpg?m23" alt="${b.t}"><figcaption>${b.t}</figcaption>`;
+    f.onclick = () => { gi = i; grossZeigen(); gg.classList.add("offen"); }; r.appendChild(f); });
+  gal.classList.add("offen");
+};
+document.getElementById("galZu").onclick = () => gal.classList.remove("offen");
+document.getElementById("grossZu").onclick = () => gg.classList.remove("offen");
+document.getElementById("zurueck").onclick = () => { gi = (gi - 1 + BILDER.length) % BILDER.length; grossZeigen(); };
+document.getElementById("weiter").onclick = () => { gi = (gi + 1) % BILDER.length; grossZeigen(); };
+document.addEventListener("keydown", e => { if (!gg.classList.contains("offen")) return;
+  if (e.key === "ArrowLeft") document.getElementById("zurueck").click();
+  if (e.key === "ArrowRight") document.getElementById("weiter").click();
+  if (e.key === "Escape") gg.classList.remove("offen"); });
 zeichnen();
 </script>
 </body>
