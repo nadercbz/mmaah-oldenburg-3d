@@ -57,7 +57,7 @@
 <main>
   <div class="leiste" id="vars"></div>
   <div class="leiste"><button id="markise" type="button">Markise: aus</button></div>
-  <p class="hinweis" style="margin:6px 0 14px;opacity:.8">Stand 23.11.2026 für alle Varianten: Werbeanlage weiß mit schwarzer Kontur, Tür ohne Folie, hinter den Oberlichtern Abholbildschirm, beleuchtetes Logo mit KOREAN STREET FOOD und blaues Neon 먹자, Seitenfenster KOREAN STREET FOOD wie vor Ort, Innenraum wie Hohenzollernstraße.</p>
+  <p class="hinweis" style="margin:6px 0 14px;opacity:.8">Stand 25.11.2026 für alle Varianten (Änderungen aus der Präsentation): Werbeanlage weiß mit schwarzer Kontur, Tür mit Wappen EAT KOREAN SINCE 2012 먹자 und Logo mit KOREAN STREET FOOD, Oberlichter frei mit Abholbildschirm links, Seitenfenster 잇코리안 als blaues Neon, Fensterschrift mit dicker Outline wie Hohenzollernstraße, Markise mit bedrucktem Volant, Innenraum wie Hohenzollernstraße.</p>
   <div class="gross"><img id="bild" alt="Render der Ladenfront"></div>
   <div class="info" id="text"></div>
   <div class="reihe" id="ansichten"></div>
@@ -94,7 +94,6 @@ const VARS = [
   ["v9", "9 · Nudelwelle", "<b>Nach MISO.</b> Weiße Bänder laufen wie Nudeln ineinander über Fenster und Tür, darüber das Logo mit KOREAN STREET FOOD in Weiß und 먹자 im Oberlicht. Ruhig und edel."],
   ["v10", "10 · Hier endet dein Hunger", "<b>Nach Day Et.</b> Ein Satz riesig in Mmaah Orange über beide Fenster: HIER ENDET DEIN HUN-GER. Auf der Tür klein Logo und Programm wie die Öffnungszeiten im Vorbild."],
   ["v11", "11 · Wandelhalle", "<b>Nach der Hamburg Folie V59.</b> Seoul Wallpaper als satiniertes Glasdekor, links HIER BESTELLEN / ÜBERALL GENIESSEN in Aubergine mit App Karte und echtem QR Code, rechts KOREANISCH? ABER SCHNELL! und Hol dir jetzt: KOREAN FRIED CHICKEN. Tür mit freiem Sichtfeld, Logo im Oberlicht."],
-  ["v12", "12 · Seitenfenster Neon", "<b>Seitenfenster als blaues Neon.</b> Front wie Variante 1, das große Seitenfenster im Durchgang zeigt KOREAN STREET FOOD als blau leuchtenden Neon Schriftzug, durch das Fenster sieht man in den Laden."],
 ];
 const ANS = [["01_Front","Front"],["02_Schraeg_rechts","Schräg rechts"],["03_Schraeg_links","Schräg links"],["04_Durchgang_Seitenfenster","Durchgang, Seitenfenster"],["05_Tuer_nah","Tür nah"],["06_Totale_Strasse","Totale"],["07_Innen","Innen"]];
 let v = "v4", a = "01_Front", mk = false;
@@ -104,8 +103,8 @@ function zeichnen() {
   vars.innerHTML = ""; reihe.innerHTML = "";
   VARS.forEach(([k, n]) => { const b = document.createElement("button"); b.textContent = n; b.className = k === v ? "an" : ""; b.onclick = () => { v = k; try { localStorage.setItem("ol_v", v); } catch (e) {} zeichnen(); }; vars.appendChild(b); });
   ANS.forEach(([k, n]) => { const f = document.createElement("figure"); f.className = k === a ? "an" : "";
-    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}${mk ? "_markise" : ""}_m.jpg?m23" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
-  document.getElementById("bild").src = `img/${v}_${a}${mk ? "_markise" : ""}.jpg?m23`;
+    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}${mk ? "_markise" : ""}_m.jpg?a25" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
+  document.getElementById("bild").src = `img/${v}_${a}${mk ? "_markise" : ""}.jpg?a25`;
   const mb = document.getElementById("markise"); mb.textContent = "Markise: " + (mk ? "an" : "aus"); mb.className = mk ? "an" : "";
   document.getElementById("text").innerHTML = VARS.find(x => x[0] === v)[2];
   const fv = v === "v0" ? "v1" : v;
@@ -119,11 +118,11 @@ VARS.forEach(([vk, vn]) => [false, true].forEach(m => ANS.forEach(([ak, an]) =>
   BILDER.push({ s: `img/${vk}_${ak}${m ? "_markise" : ""}`, t: `${vn} · ${an}${m ? " · mit Markise" : ""}` }))));
 let gi = 0;
 const gal = document.getElementById("gal"), gg = document.getElementById("grossGal");
-function grossZeigen() { document.getElementById("grossBild").src = BILDER[gi].s + ".jpg?m23"; document.getElementById("grossText").textContent = `${gi + 1} / ${BILDER.length} · ${BILDER[gi].t}`; }
+function grossZeigen() { document.getElementById("grossBild").src = BILDER[gi].s + ".jpg?a25"; document.getElementById("grossText").textContent = `${gi + 1} / ${BILDER.length} · ${BILDER[gi].t}`; }
 document.getElementById("galerieKnopf").onclick = () => {
   const r = document.getElementById("galRaster");
   if (!r.childElementCount) BILDER.forEach((b, i) => { const f = document.createElement("figure");
-    f.innerHTML = `<img loading="lazy" src="${b.s}_m.jpg?m23" alt="${b.t}"><figcaption>${b.t}</figcaption>`;
+    f.innerHTML = `<img loading="lazy" src="${b.s}_m.jpg?a25" alt="${b.t}"><figcaption>${b.t}</figcaption>`;
     f.onclick = () => { gi = i; grossZeigen(); gg.classList.add("offen"); }; r.appendChild(f); });
   gal.classList.add("offen");
 };
