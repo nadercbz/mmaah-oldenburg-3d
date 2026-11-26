@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Mmaah Oldenburg Druckdaten</title>
+<style>
+:root { --bg:#120c10; --karte:#1d1519; --linie:#3a2a31; --text:#f4ece6; --leise:#b9a8a8; --orange:#FF4005;
+        --putz:#e9e4dc; --schild:#f6f3ee; --glas:#2b343c; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+.wrap { max-width:1180px; margin:0 auto; padding:0 16px 80px; }
+header { padding:34px 0 8px; }
+h1 { margin:0; font-size:30px; letter-spacing:-.01em; } h1 span { color:var(--orange); }
+.unter { color:var(--leise); margin-top:4px; }
+.gross { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 6px; }
+.knopf { display:inline-block; padding:10px 16px; border-radius:999px; border:1px solid var(--linie); background:var(--karte);
+          color:var(--text); text-decoration:none; font-weight:600; font-size:14px; }
+.knopf:hover { border-color:var(--orange); }
+.knopf.haupt { background:var(--orange); border-color:var(--orange); color:#fff; }
+.box { background:var(--karte); border:1px solid var(--linie); border-radius:14px; padding:18px 20px; margin:22px 0; }
+.box h3 { margin:0 0 8px; font-size:16px; }
+.box ul { margin:0; padding-left:18px; color:var(--leise); } .box li { margin:5px 0; } .box b { color:var(--text); }
+.box.warn { border-color:var(--orange); }
+.uebersicht { display:grid; grid-template-columns:1.25fr 1fr; gap:18px; align-items:start; }
+.uebersicht svg { width:100%; height:auto; background:#0c0809; border-radius:12px; border:1px solid var(--linie); }
+svg text { font-family:-apple-system, Arial, sans-serif; text-anchor:middle; }
+svg .nr { fill:#fff; font-size:150px; font-weight:800; } svg .wa { font-size:230px; font-weight:900; font-style:italic; }
+svg .vol { fill:#fff; font-size:110px; font-weight:800; } svg .klein { fill:#8c9aa5; font-size:90px; }
+svg .mass { fill:var(--leise); font-size:82px; }
+.liste { list-style:none; margin:0; padding:0; }
+.liste li { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--linie); }
+.liste a { color:var(--text); text-decoration:none; } .liste a:hover { color:var(--orange); }
+.liste .n { flex:0 0 26px; height:26px; border-radius:50%; background:var(--orange); color:#fff; font-weight:800; display:grid; place-items:center; font-size:13px; }
+.liste small { color:var(--leise); display:block; }
+.flaeche { border-top:1px solid var(--linie); padding:28px 0 6px; }
+.flaeche .kopf { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+.flaeche h2 { margin:0; font-size:21px; }
+.flaeche .nr { width:34px; height:34px; border-radius:50%; background:var(--orange); color:#fff; font-weight:800; display:grid; place-items:center; }
+.flaeche .mass { color:var(--orange); font-weight:700; margin-left:auto; }
+.inhalt { display:grid; grid-template-columns:300px 1fr; gap:22px; align-items:start; }
+.vorschau img { width:100%; border-radius:10px; border:1px solid var(--linie); display:block; background:#262e36; }
+table { border-collapse:collapse; width:100%; }
+th, td { text-align:left; vertical-align:top; padding:7px 0; border-bottom:1px solid var(--linie); }
+th { width:150px; color:var(--leise); font-weight:500; padding-right:14px; }
+.achtung { color:#ffb79c; margin:12px 0 0; }
+.knoepfe { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; }
+.ansichten { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:8px; }
+.ansichten a { color:var(--leise); text-decoration:none; font-size:13px; }
+.ansichten img { width:100%; border-radius:8px; display:block; border:1px solid var(--linie); }
+footer { color:var(--leise); border-top:1px solid var(--linie); margin-top:30px; padding-top:18px; font-size:14px; }
+footer a { color:var(--text); }
+@media (max-width:820px) { .uebersicht, .inhalt { grid-template-columns:1fr; } .flaeche .mass { margin-left:0; width:100%; } h1 { font-size:24px; } }
+@media print { body { background:#fff; color:#000; } .knopf, .knoepfe, .gross { display:none; } .box, .flaeche { break-inside:avoid; } }
+</style></head><body><div class="wrap">
+<header>
+  <h1>mmaah! <span>Oldenburg</span> · Druckdaten</h1>
+  <div class="unter">Staustr. 11, Oldenburg · Ladenfront, Endstand Variante 4 · Stand 26.11.2026 · für den Werbetechniker</div>
+  <div class="gross">
+    <a class="knopf haupt" href="Mmaah_Oldenburg_Druckdaten_2026-11-26.zip" download>Alle Druckdaten als ZIP laden</a>
+    <a class="knopf" href="https://github.com/nadercbz/mmaah-oldenburg-3d/tree/main/druckdaten" target="_blank">Ordner auf GitHub</a>
+    <a class="knopf" href="../" target="_blank">3D Ansicht der Ladenfront</a>
+  </div>
+</header>
+
+<div class="box warn">
+  <h3>Vor der Produktion bitte vor Ort aufmessen</h3>
+  <ul>
+    <li>Alle Glasmaße stammen aus Fotos und dem 3D Modell (Türhöhe 2,12 m als Maßstab). <b>Bitte jede Scheibe aufmessen</b> und die Datei auf das echte Glasmaß anpassen: Motiv mittig halten, Größe proportional, Höhen über Gehweg wie angegeben.</li>
+    <li>Vor dem Druck einen Korrekturabzug an Mmaah zur Freigabe schicken.</li>
+  </ul>
+</div>
+
+<div class="box">
+  <h3>So sind die Dateien angelegt</h3>
+  <ul>
+    <li><b>Maßstab 1:1</b>, Einheit Millimeter, Seitengröße = Fläche. Alle Motive <b>seitenrichtig von außen</b> gesehen.</li>
+    <li><b>PDF</b>: Vektor, Schriften eingebettet. <b>SVG</b>: Schrift in Pfade umgewandelt, für Plotter, Fräse und Laser (Illustrator, Corel, Flexi).</li>
+    <li>Weiße Motive liegen als <b>Weiß auf transparentem Grund</b>. Im Programm den Hintergrund dunkel stellen oder die Vorschau JPG ansehen.</li>
+    <li>Kein Beschnitt nötig bei Plott. Für Digitaldruck bitte selbst 3 bis 5 mm Beschnitt anlegen.</li>
+    <li>Oberlichter über Fenstern und Tür sowie das schmale Seitenfenster bleiben <b>ohne Beklebung</b>.</li>
+  </ul>
+</div>
+
+<div class="uebersicht">
+  <svg viewBox='-200 0 4420 4760' role='img' aria-label='Fassade Staustr. 11 mit nummerierten Flächen'><rect x='0' y='130' width='4020' height='4370' fill='var(--putz)'/><rect x='0' y='250' width='4020' height='950' fill='var(--schild)' stroke='var(--linie)' stroke-width='8'/><line x1='-200' y1='4500' x2='4220' y2='4500' stroke='var(--leise)' stroke-width='10'/><rect x='460' y='2380' width='880' height='1520' fill='var(--glas)' stroke='#111' stroke-width='22'/><rect x='1530' y='2450' width='960' height='1900' fill='var(--glas)' stroke='#111' stroke-width='22'/><rect x='2680' y='2380' width='880' height='1520' fill='var(--glas)' stroke='#111' stroke-width='22'/><rect x='460' y='1710' width='880' height='540' fill='var(--glas)' stroke='#111' stroke-width='22'/><rect x='1460' y='1710' width='1100' height='540' fill='var(--glas)' stroke='#111' stroke-width='22'/><rect x='2680' y='1710' width='880' height='540' fill='var(--glas)' stroke='#111' stroke-width='22'/><text x='900.0' y='2010.0' class='klein'>frei</text><text x='2010.0' y='2010.0' class='klein'>frei</text><text x='3120.0' y='2010.0' class='klein'>frei</text><rect x='530' y='2570' width='740' height='560' fill='none' stroke='#fff' stroke-width='14' stroke-dasharray='40 26'/><rect x='2750' y='2570' width='740' height='560' fill='none' stroke='#fff' stroke-width='14' stroke-dasharray='40 26'/><rect x='1677' y='2670' width='666' height='760' fill='none' stroke='#fff' stroke-width='14' stroke-dasharray='40 26'/><rect x='1060' y='499' width='1900' height='451' fill='#fff' stroke='#000' stroke-width='22'/><text x='2010' y='765' class='wa'>mmaah!</text><rect x='0' y='2117' width='4020' height='220' fill='#D7141A' opacity='.82'/><text x='2010' y='2259' class='vol'>KOREAN STREET FOOD</text><circle cx='900' cy='3000' r='120' fill='var(--orange)'/><text x='900' y='3052' class='nr'>1</text><circle cx='3120' cy='3000' r='120' fill='var(--orange)'/><text x='3120' y='3052' class='nr'>2</text><circle cx='2010' cy='3350' r='120' fill='var(--orange)'/><text x='2010' y='3402' class='nr'>3</text><circle cx='300' cy='2227' r='120' fill='var(--orange)'/><text x='300' y='2279' class='nr'>5</text><circle cx='3300' cy='725' r='120' fill='var(--orange)'/><text x='3300' y='777' class='nr'>6</text><text x='2010' y='4700' class='mass'>Front 4.020 mm zwischen den Pfeilern · Volant hängt 1,5 m vor der Fassade (Lage schematisch)</text></svg>
+  <div class="box" style="margin:0">
+    <h3>Die sieben Flächen</h3>
+    <ul class="liste">
+      <li><span class="n">1</span><a href="#f1">Fenster links, KOREAN BBQ ON RICE<small>Plott weiß · 880 x 1520 mm</small></a></li>
+      <li><span class="n">2</span><a href="#f2">Fenster rechts, KOREAN FRIED CHICKEN<small>Plott weiß · 880 x 1520 mm</small></a></li>
+      <li><span class="n">3</span><a href="#f3">Tür, Wappen und Logo<small>Plott weiß und Logo Druck · 960 x 1900 mm</small></a></li>
+      <li><span class="n">4</span><a href="#f4">Seitenfenster Durchgang, Neon 잇코리안<small>LED Neon auf 4 Acrylplatten · 500 x 2.015 mm</small></a></li>
+      <li><span class="n">5</span><a href="#f5">Markise, Volant<small>Druck weiß auf Rot · 4020 x 220 mm</small></a></li>
+      <li><span class="n">6</span><a href="#f6">Werbeanlage mmaah!<small>Einzelbuchstaben weiß, Kontur schwarz · 1900 x 451 mm</small></a></li>
+      <li><span class="n">7</span><a href="#f7">Rückwand innen, 3D Buchstaben<small>10 mm weiß · 800 x 1315 mm</small></a></li>
+    </ul>
+  </div>
+</div>
+
+<section class='flaeche' id='f1'>
+  <div class='kopf'><span class='nr'>1</span><h2>Fenster links · KOREAN BBQ ON RICE</h2><span class='mass'>880 x 1520 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/01_Fenster_links_KOREAN-BBQ-ON-RICE.jpg' target='_blank'><img src='vorschau/01_Fenster_links_KOREAN-BBQ-ON-RICE.jpg' alt='Vorschau Fenster links · KOREAN BBQ ON RICE'></a>
+    <div>
+      <table><tr><th>Glas (Entwurf)</th><td>880 x 1.520 mm, Unterkante ca. 600 mm über Gehweg</td></tr><tr><th>Motiv</th><td>weiße Outline Schrift, Strich 14 bis 15 mm, Oberkante Schrift 1,93 m über Gehweg, seitlich 70 mm Rand</td></tr><tr><th>Verfahren</th><td>Plott aus weißer Hochleistungsfolie, gegossen, matt (z. B. Oracal 751C weiß oder gleichwertig), entgittern, übertragen</td></tr><tr><th>Montage</th><td>außen, seitenrichtig wie die Datei. Bei Innenverklebung die Datei spiegeln.</td></tr><tr><th>Farbe</th><td>Weiß</td></tr></table>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='01_Fenster_links_KOREAN-BBQ-ON-RICE.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='01_Fenster_links_KOREAN-BBQ-ON-RICE.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/01_Fenster_links_KOREAN-BBQ-ON-RICE.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_01_Front.jpg' target='_blank'><img src='../img/v4_01_Front_m.jpg' alt='Front' loading='lazy'><span>Front</span></a><a href='../img/v4_03_Schraeg_links.jpg' target='_blank'><img src='../img/v4_03_Schraeg_links_m.jpg' alt='Schräg links' loading='lazy'><span>Schräg links</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f2'>
+  <div class='kopf'><span class='nr'>2</span><h2>Fenster rechts · KOREAN FRIED CHICKEN</h2><span class='mass'>880 x 1520 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/02_Fenster_rechts_KOREAN-FRIED-CHICKEN.jpg' target='_blank'><img src='vorschau/02_Fenster_rechts_KOREAN-FRIED-CHICKEN.jpg' alt='Vorschau Fenster rechts · KOREAN FRIED CHICKEN'></a>
+    <div>
+      <table><tr><th>Glas (Entwurf)</th><td>880 x 1.520 mm, Unterkante ca. 600 mm über Gehweg</td></tr><tr><th>Motiv</th><td>weiße Outline Schrift, Strich 14 bis 15 mm, Oberkante Schrift 1,93 m über Gehweg, seitlich 70 mm Rand</td></tr><tr><th>Verfahren</th><td>Plott aus weißer Hochleistungsfolie, gegossen, matt (z. B. Oracal 751C weiß oder gleichwertig), entgittern, übertragen</td></tr><tr><th>Montage</th><td>außen, seitenrichtig wie die Datei. Bei Innenverklebung die Datei spiegeln.</td></tr><tr><th>Farbe</th><td>Weiß</td></tr></table><p class='achtung'>Beide Fenster sind gleich aufgebaut: Schrift auf derselben Höhe, Unterzeile genau so breit wie der Schriftblock.</p>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='02_Fenster_rechts_KOREAN-FRIED-CHICKEN.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='02_Fenster_rechts_KOREAN-FRIED-CHICKEN.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/02_Fenster_rechts_KOREAN-FRIED-CHICKEN.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_01_Front.jpg' target='_blank'><img src='../img/v4_01_Front_m.jpg' alt='Front' loading='lazy'><span>Front</span></a><a href='../img/v4_02_Schraeg_rechts.jpg' target='_blank'><img src='../img/v4_02_Schraeg_rechts_m.jpg' alt='Schräg rechts' loading='lazy'><span>Schräg rechts</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f3'>
+  <div class='kopf'><span class='nr'>3</span><h2>Tür · Wappen EAT KOREAN SINCE 2012 먹자 und Logo</h2><span class='mass'>960 x 1900 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/03_Tuer_Wappen_und_Logo.jpg' target='_blank'><img src='vorschau/03_Tuer_Wappen_und_Logo.jpg' alt='Vorschau Tür · Wappen EAT KOREAN SINCE 2012 먹자 und Logo'></a>
+    <div>
+      <table><tr><th>Glas (Entwurf)</th><td>960 x 1.900 mm, Unterkante ca. 150 mm über Gehweg</td></tr><tr><th>Motiv</th><td>Wappen weiß 666 mm breit, darunter Logo mmaah! KOREAN STREET FOOD 440 mm breit, Abstand 70 mm, beides zusammen senkrecht und waagerecht mittig auf der Scheibe</td></tr><tr><th>Verfahren</th><td>Wappen als Plott weiß (wie Fenster). Logo als Digitaldruck auf weißer Folie mit Konturschnitt oder zweifarbig geplottet (Orange und Weiß)</td></tr><tr><th>Montage</th><td>außen, seitenrichtig</td></tr><tr><th>Farben</th><td>Weiß, Mmaah Orange #FF4005 (Sonderfarbe nach Farbmuster Mmaah abstimmen)</td></tr></table><p class='achtung'>Griff und Schloss vor Ort prüfen: im Entwurf ist der diagonale Stangengriff entfernt, damit er das Wappen nicht verdeckt.</p>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='03_Tuer_Wappen_und_Logo.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='03_Tuer_Wappen_und_Logo.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/03_Tuer_Wappen_und_Logo.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_05_Tuer_nah.jpg' target='_blank'><img src='../img/v4_05_Tuer_nah_m.jpg' alt='Tür nah' loading='lazy'><span>Tür nah</span></a><a href='../img/v4_01_Front.jpg' target='_blank'><img src='../img/v4_01_Front_m.jpg' alt='Front' loading='lazy'><span>Front</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f4'>
+  <div class='kopf'><span class='nr'>4</span><h2>Seitenfenster · Neon 잇코리안 auf Acryl</h2><span class='mass'>4 Platten je 500 x 500 mm, gesamt 500 x 2.015 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/04_Seitenfenster_Neon_Ikorian.jpg' target='_blank'><img src='vorschau/04_Seitenfenster_Neon_Ikorian.jpg' alt='Vorschau Seitenfenster · Neon 잇코리안 auf Acryl'></a>
+    <div>
+      <table><tr><th>Lage</th><td>großes Seitenfenster im Durchgang (Glas ca. 1.000 x 2.400 mm), innen hinter dem Glas, mittig, Mitte des Stapels 1,55 m über Boden</td></tr><tr><th>Aufbau</th><td>4 Acrylplatten klar 8 mm, je 500 x 500 mm, senkrecht übereinander mit 5 mm Fuge. Zeichen von oben: 잇 코 리 안</td></tr><tr><th>Neon</th><td>LED Neon Flex frontleuchtend, ca. 12 mm. Die orange Linie in der Datei ist die Mitte der Röhre. Leuchtfarbe orange-rot, sehr warm (#FF4A14 als Richtwert, bitte Farbprobe)</td></tr><tr><th>Befestigung</th><td>je Platte 4 Bohrungen Ø 8 mm, 40 mm vom Rand (blau in der Datei), Alu Abstandshalter Ø 19 mm. Abhängung an 2 Stahlseilen vom Sturz, Kabel nach oben</td></tr><tr><th>Schmales Fenster</th><td>bleibt frei</td></tr></table><p class='achtung'>Die Zeichen sind 1:1 nach der Neon Werbeanlage im Laden nachgezogen. Blau = Plattenkontur und Bohrungen, nicht beleuchtet.</p>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='04_Seitenfenster_Neon_Ikorian.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='04_Seitenfenster_Neon_Ikorian.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/04_Seitenfenster_Neon_Ikorian.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_04_Durchgang_Seitenfenster.jpg' target='_blank'><img src='../img/v4_04_Durchgang_Seitenfenster_m.jpg' alt='Durchgang' loading='lazy'><span>Durchgang</span></a><a href='../img/v4_03_Schraeg_links.jpg' target='_blank'><img src='../img/v4_03_Schraeg_links_m.jpg' alt='Schräg links' loading='lazy'><span>Schräg links</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f5'>
+  <div class='kopf'><span class='nr'>5</span><h2>Markise · bedruckter Volant</h2><span class='mass'>4020 x 220 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/05_Markise_Volant.jpg' target='_blank'><img src='vorschau/05_Markise_Volant.jpg' alt='Vorschau Markise · bedruckter Volant'></a>
+    <div>
+      <table><tr><th>Maß (Entwurf)</th><td>4.020 x 220 mm, ganze Frontbreite. Länge und Saum an die echte Markise anpassen</td></tr><tr><th>Motiv</th><td>mittig KOREAN STREET FOOD, links und rechts das Logo mmaah! KOREAN STREET FOOD, alles weiß</td></tr><tr><th>Verfahren</th><td>Digitaldruck auf Markisenstoff oder weißer Druck auf rotem Markisenstoff</td></tr><tr><th>Farben</th><td>Stoff Rot #D7141A, Druck Weiß</td></tr></table>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='05_Markise_Volant.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='05_Markise_Volant.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/05_Markise_Volant.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_01_Front_markise.jpg' target='_blank'><img src='../img/v4_01_Front_markise_m.jpg' alt='Front mit Markise' loading='lazy'><span>Front mit Markise</span></a><a href='../img/v4_06_Totale_Strasse_markise.jpg' target='_blank'><img src='../img/v4_06_Totale_Strasse_markise_m.jpg' alt='Totale mit Markise' loading='lazy'><span>Totale mit Markise</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f6'>
+  <div class='kopf'><span class='nr'>6</span><h2>Werbeanlage · Einzelbuchstaben mmaah!</h2><span class='mass'>1900 x 451 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/06_Werbeanlage_mmaah.jpg' target='_blank'><img src='vorschau/06_Werbeanlage_mmaah.jpg' alt='Vorschau Werbeanlage · Einzelbuchstaben mmaah!'></a>
+    <div>
+      <table><tr><th>Maß</th><td>1.900 x 451 mm (Breite über alles), Buchstaben 70 mm tief, 40 mm Wandabstand</td></tr><tr><th>Lage</th><td>Schildfeld über der Front (3,30 bis 4,25 m), Mitte über der Fassadenmitte, Mitte Höhe ca. 3,78 m</td></tr><tr><th>Aufbau</th><td>Buchstaben m m a a h ! und das kleine ©, Zarge und Front weiß. Vorne schwarze Kontur 18 mm von der Buchstabenkante nach innen. Abstände zwischen den Buchstaben und die Innenräume bleiben frei</td></tr><tr><th>Datei</th><td>Ebene Buchstaben_Front_weiss = Außenkontur der Buchstaben (Zuschnitt). Ebene Kontur_schwarz_18mm_nach_innen = schwarze Folie oder Druck auf der Front</td></tr><tr><th>Beleuchtung</th><td>nach Absprache mit Mmaah</td></tr></table>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='06_Werbeanlage_mmaah.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='06_Werbeanlage_mmaah.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/06_Werbeanlage_mmaah.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_01_Front.jpg' target='_blank'><img src='../img/v4_01_Front_m.jpg' alt='Front' loading='lazy'><span>Front</span></a><a href='../img/v4_06_Totale_Strasse.jpg' target='_blank'><img src='../img/v4_06_Totale_Strasse_m.jpg' alt='Totale' loading='lazy'><span>Totale</span></a></div>
+    </div>
+  </div>
+</section>
+<section class='flaeche' id='f7'>
+  <div class='kopf'><span class='nr'>7</span><h2>Rückwand · 3D Buchstaben EAT KOREAN SINCE 2012 먹자</h2><span class='mass'>800 x 1315 mm</span></div>
+  <div class='inhalt'>
+    <a class='vorschau' href='vorschau/07_Rueckwand_3D_Buchstaben.jpg' target='_blank'><img src='vorschau/07_Rueckwand_3D_Buchstaben.jpg' alt='Vorschau Rückwand · 3D Buchstaben EAT KOREAN SINCE 2012 먹자'></a>
+    <div>
+      <table><tr><th>Maß</th><td>800 x 1.315 mm, 10 mm stark</td></tr><tr><th>Lage</th><td>innen hinter dem Tresen auf schwarzer Wandfläche 1.120 x 1.660 mm (matt schwarz), mittig, Unterkante Schrift 1,13 m über Boden</td></tr><tr><th>Material</th><td>Acryl oder PVC Hartschaum weiß, 10 mm, gefräst oder gelasert</td></tr><tr><th>Datei</th><td>in der Datei schwarz gezeichnet = Fräskontur. Die Buchstaben selbst sind weiß</td></tr><tr><th>Montage</th><td>geklebt, PDF 1:1 als Montageschablone</td></tr></table>
+      <div class='knoepfe'>
+        <a class='knopf haupt' href='07_Rueckwand_3D_Buchstaben.pdf' download>PDF 1:1</a>
+        <a class='knopf' href='07_Rueckwand_3D_Buchstaben.svg' download>SVG (Schrift in Pfaden)</a>
+        <a class='knopf' href='vorschau/07_Rueckwand_3D_Buchstaben.jpg' download>Vorschau JPG</a>
+      </div>
+      <div class='ansichten'><a href='../img/v4_07_Innen.jpg' target='_blank'><img src='../img/v4_07_Innen_m.jpg' alt='Innen' loading='lazy'><span>Innen</span></a></div>
+    </div>
+  </div>
+</section>
+<footer>
+  Rückfragen zu den Daten an Nader. Alle Dateien liegen auch im GitHub Ordner
+  <a href="https://github.com/nadercbz/mmaah-oldenburg-3d/tree/main/druckdaten" target="_blank">https://github.com/nadercbz/mmaah-oldenburg-3d/tree/main/druckdaten</a>.
+  Diese Seite: <a href="https://nadercbz.github.io/mmaah-oldenburg-3d/druckdaten/">https://nadercbz.github.io/mmaah-oldenburg-3d/druckdaten/</a>
+</footer>
+</div></body></html>
