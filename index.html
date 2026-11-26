@@ -103,8 +103,8 @@ function zeichnen() {
   vars.innerHTML = ""; reihe.innerHTML = "";
   VARS.forEach(([k, n]) => { const b = document.createElement("button"); b.textContent = n; b.className = k === v ? "an" : ""; b.onclick = () => { v = k; try { localStorage.setItem("ol_v", v); } catch (e) {} zeichnen(); }; vars.appendChild(b); });
   ANS.forEach(([k, n]) => { const f = document.createElement("figure"); f.className = k === a ? "an" : "";
-    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}${mk ? "_markise" : ""}_m.jpg?a26f" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
-  document.getElementById("bild").src = `img/${v}_${a}${mk ? "_markise" : ""}.jpg?a26f`;
+    f.innerHTML = `<img loading="lazy" src="img/${v}_${k}${mk ? "_markise" : ""}_m.jpg?a26g" alt="${n}"><figcaption>${n}</figcaption>`; f.onclick = () => { a = k; zeichnen(); }; reihe.appendChild(f); });
+  document.getElementById("bild").src = `img/${v}_${a}${mk ? "_markise" : ""}.jpg?a26g`;
   const mb = document.getElementById("markise"); mb.textContent = "Markise: " + (mk ? "an" : "aus"); mb.className = mk ? "an" : "";
   document.getElementById("text").innerHTML = VARS.find(x => x[0] === v)[2];
   const fv = v === "v0" ? "v1" : v;
@@ -118,11 +118,11 @@ VARS.forEach(([vk, vn]) => [false, true].forEach(m => ANS.forEach(([ak, an]) =>
   BILDER.push({ s: `img/${vk}_${ak}${m ? "_markise" : ""}`, t: `${vn} · ${an}${m ? " · mit Markise" : ""}` }))));
 let gi = 0;
 const gal = document.getElementById("gal"), gg = document.getElementById("grossGal");
-function grossZeigen() { document.getElementById("grossBild").src = BILDER[gi].s + ".jpg?a26f"; document.getElementById("grossText").textContent = `${gi + 1} / ${BILDER.length} · ${BILDER[gi].t}`; }
+function grossZeigen() { document.getElementById("grossBild").src = BILDER[gi].s + ".jpg?a26g"; document.getElementById("grossText").textContent = `${gi + 1} / ${BILDER.length} · ${BILDER[gi].t}`; }
 document.getElementById("galerieKnopf").onclick = () => {
   const r = document.getElementById("galRaster");
   if (!r.childElementCount) BILDER.forEach((b, i) => { const f = document.createElement("figure");
-    f.innerHTML = `<img loading="lazy" src="${b.s}_m.jpg?a26f" alt="${b.t}"><figcaption>${b.t}</figcaption>`;
+    f.innerHTML = `<img loading="lazy" src="${b.s}_m.jpg?a26g" alt="${b.t}"><figcaption>${b.t}</figcaption>`;
     f.onclick = () => { gi = i; grossZeigen(); gg.classList.add("offen"); }; r.appendChild(f); });
   gal.classList.add("offen");
 };
